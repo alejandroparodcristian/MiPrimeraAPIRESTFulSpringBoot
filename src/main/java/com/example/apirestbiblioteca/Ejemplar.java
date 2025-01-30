@@ -5,6 +5,7 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Pattern;
 import lombok.Getter;
 import lombok.Setter;
 import org.hibernate.annotations.ColumnDefault;
@@ -34,6 +35,10 @@ public class Ejemplar {
     @ColumnDefault("'Disponible'")
     @Lob
     @Column(name = "estado")
+    @Pattern(
+            regexp = "^(Disponible|Prestado|Dañado)$",
+            message = "El estado debe ser disponible, prestado o dañado"
+    )
     private String estado;
 
 
